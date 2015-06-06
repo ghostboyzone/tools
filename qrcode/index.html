@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>二维码生成器</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <!-- <script type="text/javascript" src="jquery.min.js"></script> -->
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="qrcode.min.js"></script>
+    <style type="text/css">
+    .spacing{
+    	margin-bottom: 10px;
+    }
+    </style>
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h3>二维码生成器</h3>
+		</div>
+		<div class="row spacing">
+			<div class="col-md-6">
+				<label>请输入链接</label>
+				<input type="text" id="text" class="form-control" value="http://weibo.com/ghostboyzone">
+			</div>
+		</div>
+		<div class="row spacing">
+			<div class="col-md-2">
+				<label>大小</label>
+				<input type="number" id="size" class="form-control" value="200">
+			</div>
+		</div>
+		<div class="row spacing">
+			<div class="col-md-12">
+				<label>二维码（扫一扫）</label>	
+				<div id="qrcode"></div>
+			</div>
+		</div>
+	</div>
+    
+    <script type="text/javascript">
+    var qrSize = 200;
+
+    function makeCode() {
+    	$('#qrcode').html('');
+    	var qrcode = new QRCode(document.getElementById("qrcode"), {
+    	    width: qrSize,
+    	    height: qrSize
+    	});
+        var elText = document.getElementById("text");
+        if (!elText.value) {
+            elText.focus();
+            return;
+        }
+        qrcode.makeCode(elText.value);
+    }
+
+    makeCode();
+
+    $("#text").
+    on("propertychange input", function() {
+        makeCode();
+    });
+    
+    $('#size').on("propertychange input", function(){
+    	var size = parseInt($('#size').val());
+    	if(!isNaN(size) && size > 0){
+    		qrSize = size;
+    		makeCode();
+    	}
+    })
+    </script>
+</body>
