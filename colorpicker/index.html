@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>颜色选择器</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <!-- <script type="text/javascript" src="jquery.min.js"></script> -->
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="colpick.js"></script>
+    <link rel="stylesheet" type="text/css" href="colpick.css">
+    <style type="text/css">
+    .spacing {
+        margin-bottom: 10px;
+    }
+    /*Color Picker*/
+    #colpick .colpick {
+        border: none;
+        background: transparent !important;
+    }
+    #colpick .colpick_submit {
+        float:left;
+        width:13.8728%;
+        height: 11.7647%;
+        color: #5bba27 !important;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h3>颜色选择器（<a href="./colorPicker/">其他</a>）</h3>
+        </div>
+        <div class="row spacing">
+            <div class="col-md-12">
+                <div id="colpick" style="height:300px;"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#colpick').colpick({
+            flat: true,
+            submit: 1,
+            submitText: '确定',
+            width: '100%',
+            color: '4fb0a8',
+            fontSize: '25px',
+            onChange: function(hsb, hex, rgb) {
+
+                console.log(hex);
+                $('#site-header').css('backgroundColor', '#' + hex);
+            },
+            onChangeUp: function(hsb, hex, rgb) {
+                fillSchemes(hsb);
+            },
+            onSubmit: function(hsb, hex, rgb) {}
+        });
+    })
+    </script>
+</body>
+
+</html>

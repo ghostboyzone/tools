@@ -1,0 +1,1 @@
+* https://github.com/josedvq/colpick-jQuery-Color-Picker

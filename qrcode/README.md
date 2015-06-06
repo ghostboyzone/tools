@@ -1,1 +1,1 @@
-* https://github.com/jeromeetienne/jquery-qrcode
+* source: https://github.com/jeromeetienne/jquery-qrcode
